@@ -6,38 +6,19 @@ import { openContractDeploy, openContractCall } from '@blockstack/connect';
 export default function Test() {
   const { doContractCall } = useConnect();
   const [txID, setTxID] = useState();
-  const codeBody = '(define-public (say-hi (input int))(begin (print(+2 input)) ok "hello"))';
-
-  const options = {
-    contractName: 'my-contract-name12',
-    codeBody,
-    appDetails: {
-      name: 'My-App',
-      icon: '',
-    },
-    finished: data => {
-      console.log(data.txId);
-      //console.log(data);
-      setTxID(data.txId);
-    },
-  };
 
   const onClick = async () => {
     const callOptions = {
       contractAddress: 'ST14K89W7P6SY7G388V3PSFGEJPQWEVM2YZD76RS',
-      contractName: 'my-contract-name11',
+      contractName: 'my-contract-name17',
       functionName: 'say-hi',
-      functionArgs: [
-        {
-          type: 'buff',
-          value: 1,
-        },
-      ],
+      functionArgs: [],
       appDetails: {
         name: 'SuperApp',
         icon: 'https://example.com/icon.png',
       },
       finished: data => {
+        console.log(data);
         console.log('TX ID:', data.txId);
         console.log('Raw TX:', data.txRaw);
       },
@@ -47,6 +28,20 @@ export default function Test() {
   //const authOrigin = 'https://app.blockstack.org';
 
   const onDeploy = () => {
+    const codeBody = '(define-public (say-hi) (ok "hello world"))';
+    const options = {
+      contractName: 'my-contract-name17',
+      codeBody,
+      appDetails: {
+        name: 'My-App',
+        icon: '',
+      },
+      finished: data => {
+        console.log(data.txId);
+        //console.log(data);
+        setTxID(data.txId);
+      },
+    };
     openContractDeploy(options);
   };
   const onCheckTxn = () => {
