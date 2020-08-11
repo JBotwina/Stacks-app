@@ -1,8 +1,6 @@
-# Blockstack Todo App
+# Stacks-app
 
-A simple React Todo app built for the decentralized web.
-
-This app was built for learning purposes. Try it out at [todos.blockstack.org](https://todos.blockstack.org), and check out our [guide](https://docs.blockstack.org/browser/todo-list.html) that walks you through how it all works.
+Learning how to interact with blockstack auth, smart contract and Gaia. 
 
 ![demo](./public/demo.png)
 
@@ -18,4 +16,3 @@ npm run start
 # Compiles and minifies for production
 npm run build
 ```
-# Stacks-app
