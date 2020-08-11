@@ -7,17 +7,19 @@ import { appConfig } from '../assets/constants';
 import { Connect } from '@blockstack/connect';
 import { TodoList } from './TodoList';
 import Test from './Test';
+import GaiaTest from './GaiaTest';
 
 const userSession = new UserSession({ appConfig });
 
 export default class App extends Component {
   state = {
     userData: null,
+    session: null,
   };
 
   handleSignOut(e) {
     e.preventDefault();
-    this.setState({ userData: null });
+    this.setState({ userData: null, session: null });
     userSession.signUserOut(window.location.origin);
   }
 
@@ -30,7 +32,9 @@ export default class App extends Component {
       },
       userSession,
       finished: ({ userSession }) => {
-        this.setState({ userData: userSession.loadUserData() });
+        //console.log(userSession);
+        this.setState({ userData: userSession.loadUserData(), session: userSession });
+        //console.log(`User's data is ${}`);
       },
     };
     return (
@@ -44,8 +48,9 @@ export default class App extends Component {
                   <Signin />
                 ) : (
                   <div>
-                    <Test />
-                    <TodoList />
+                    <Test test={this.state} />
+                    <GaiaTest test={this.state} />
+                    {/*<TodoList />*/}
                   </div>
                 )}
               </div>
@@ -64,7 +69,7 @@ export default class App extends Component {
         this.setState({ userData: userData });
       });
     } else if (userSession.isUserSignedIn()) {
-      this.setState({ userData: userSession.loadUserData() });
+      this.setState({ userData: userSession.loadUserData(), session: userSession });
     }
   }
 }
