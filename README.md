@@ -2,8 +2,6 @@
 
 Learning how to interact with blockstack auth, smart contract and Gaia. 
 
-![demo](./public/demo.png)
-
 ## Usage
 
 ``` bash
