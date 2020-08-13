@@ -16,8 +16,8 @@ export default function Test(props) {
     //console.log(props.test);
     const callOptions = {
       contractAddress: props.test.userData.profile.stxAddress,
-      contractName: 'xthCaller10',
-      functionName: 'incrementCurr',
+      contractName: 'jimbo3',
+      functionName: 'showAddress',
       functionArgs: [],
       appDetails: {
         name: 'SuperApp',
@@ -51,10 +51,11 @@ export default function Test(props) {
 
   const onDeploy = () => {
     //const codeBody = '(define-public (say-hi) (ok "hello world"))';
-    const codeBody =
-      '(define-data-var curr int 0) (define-private (resetCurr) (begin (var-set curr 0) (ok "You won"))) (define-public (incrementCurr) (begin (var-set curr (+ (var-get curr) 1)) (if (is-eq (var-get curr) 2) (resetCurr) (ok "Try again"))))';
+    //const codeBody =
+    //  '(define-data-var curr int 0) (define-private (resetCurr) (begin (var-set curr 0) (ok "You won"))) (define-public (incrementCurr) (begin (var-set curr (+ (var-get curr) 1)) (if (is-eq (var-get curr) 2) (resetCurr) (ok "Try again"))))';
+    const codeBody = '(define-public (showAddress) (ok tx-sender))';
     const options = {
-      contractName: 'xthCaller10',
+      contractName: 'jimbo3',
       codeBody,
       appDetails: {
         name: 'My-App',

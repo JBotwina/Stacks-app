@@ -15,8 +15,9 @@ export default function GaiaTest(props) {
       encrypt: false,
     };
 
-    props.test.session.putFile('/hello2.txt', value, putOptions).then(() => {
+    props.test.session.putFile('hello3.txt', value, putOptions).then(url => {
       // /hello.txt exists now, and has the contents "hello world!".
+      console.log('file now exists at:: ', url);
       console.log(value);
     });
   };
@@ -24,7 +25,7 @@ export default function GaiaTest(props) {
     const readOptions = {
       decrypt: false,
     };
-    props.test.session.getFile('/hello1.txt', readOptions).then(fileContents => {
+    props.test.session.getFile('hello3.txt', readOptions).then(fileContents => {
       // get the contents of the file /hello.txt
       console.log(fileContents);
     });
